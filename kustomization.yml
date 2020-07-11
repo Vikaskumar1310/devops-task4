@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - prom-pvc.yml
+  - graf-pvc.yml
+  - prom-deployment.yml
+  - graf-deployment.yml
+  - prom-service.yml
+  - graf-service.yml

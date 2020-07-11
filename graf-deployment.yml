@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: graf-deployment
+  labels: 
+    app: graf
+
+spec:
+  selector:
+    matchLabels:
+      app: graf
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: graf
+    spec:
+      containers:
+      - image: grafana/grafana
+        name: grafana-container
+
+        volumeMounts:
+        - name: grafana-storage
+          mountPath: /var/lib/grafana
+       
+      volumes:
+      - name: grafana-storage
+        persistentVolumeClaim:
+          claimName: graf-pvc
+
